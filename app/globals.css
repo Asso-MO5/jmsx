@@ -1,33 +1,85 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: theme("colors.msx.cyan") transparent;
+  scrollbar-width: thin;
+  outline: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .plus-btn {
+    @apply rounded-full bg-sl-valid text-white w-10 h-10 text-3xl;
   }
+
+  .btn {
+    @apply rounded-md bg-sl-primary text-white px-2 py-1 font-FjallaOne uppercase;
+  }
+
+  .dialog {
+    @apply bg-sl-bg p-2;
+  }
+
+  fieldset {
+    @apply flex flex-col gap-2;
+  }
+
+  .poster {
+    background-image: url('/poster.webp');
+    background-size: cover;
+    background-position: center center;
+  }
+
+
 }
+
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: theme("colors.msx.black");
+  color: theme("colors.msx.white");  
+  font-size: 1rem;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+a {
+  color: theme("colors.msx.cyan");
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme("colors.msx.cyan");
+  transition: 200ms ease-in-out;
+}
+
+[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+dialog {
+  position: fixed;
+  inset: 0;
+  margin: 0px;
+  height: 100dvh;
+  width: 100dvw;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
