@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Silkscreen} from "next/font/google";
+import { Silkscreen } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/ui/header";
-import { MenuPrimary } from "@/ui/menu-primary";
+import { Header, MenuPrimary } from "@/ui";
 
-const silkscreen = Silkscreen({ weight: "400", display: "swap", subsets: ["latin"]});
+const silkscreen = Silkscreen({
+  weight: "400",
+  display: "swap",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "J'MSX 24",

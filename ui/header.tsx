@@ -1,12 +1,11 @@
-import { HeaderPlace } from "@/components/header-place";
-import { Ticket } from "@/components/ticket";
+import { HeaderPlace } from "@/components";
 import Link from "next/link";
 
 export function Header() {
   return (
-    <header className="flex gap-2 p-2 pb-0 items-center">
+    <header className="flex p-2 pb-0 items-center justify-center w-full">
       <Link href="/">
-      <img src="/placeholder.webp" alt="logo" height={64} width={64} />
+      <img src="/placeholder.webp" alt="logo" height={64} width={64} className="w-[32px] md:w-[64px]" />
       </Link>
       <HeaderPlace/>
     </header>
