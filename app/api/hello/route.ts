@@ -1,22 +1,23 @@
 import type { NextRequest } from 'next/server'
 import { getRequestContext } from '@cloudflare/next-on-pages'
+import { createServerClient } from '@/utils'
+import { cookies } from 'next/headers'
+import { createClient } from '@supabase/supabase-js'
 
 export const runtime = 'edge'
 
 export async function GET(request: NextRequest) {
-  let responseText = 'Hello World'
+  const cookieStore = cookies()
 
-  // In the edge runtime you can use Bindings that are available in your application
-  // (for more details see:
-  //    - https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site/#use-bindings-in-your-nextjs-application
-  //    - https://developers.cloudflare.com/pages/functions/bindings/
-  // )
-  //
-  // KV Example:
-  // const myKv = getRequestContext().env.MY_KV
-  // await myKv.put('suffix', ' from a KV store!')
-  // const suffix = await myKv.get('suffix')
-  // responseText += suffix
 
-  return new Response(responseText)
+  const test = {data: 'Hello, World!'}
+  // Ici, vous pouvez logger les données pour le débogage
+  console.log('Data:', test)
+
+  // Retourner une réponse avec les données au format JSON
+  return new Response(JSON.stringify(test.data), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 }
