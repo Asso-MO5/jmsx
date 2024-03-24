@@ -2,8 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
-
 * {
   box-sizing: border-box;
   scrollbar-color: theme("colors.msx.cyan") transparent;
@@ -27,20 +25,11 @@
   fieldset {
     @apply flex flex-col gap-2;
   }
-
-  .poster {
-    background-image: url('/poster.webp');
-    background-size: cover;
-    background-position: center center;
-  }
-
-
 }
-
 
 body {
   background: theme("colors.msx.black");
-  color: theme("colors.msx.white");  
+  color: theme("colors.msx.white");
   font-size: 1rem;
 }
 
