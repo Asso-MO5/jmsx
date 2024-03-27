@@ -128,7 +128,9 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
   return (
     <div className="p-3 flex items-center justify-center">
       <div className="max-w-96 flex flex-col gap-4 justify-center">
-        <div className="text-center">{texts.inscription_description}</div>
+        <div className="text-center">{texts.inscription_description}
+        PLUSIEURS CHOIX - à implémenter. 
+        </div>
         <div className="text-center">{texts.inscription_seat}</div>
         <div className="text-2xl flex justify-between">
           <button type="button" onClick={handleDecrement} className="p-3">
