@@ -25,7 +25,7 @@ export default function RootLayout({
         <Header />
         <MenuPrimary />
         {children}
-        <footer>Ici les infos RS, sponsor, mentions legales... </footer>
+        <footer></footer>
       </body>
     </html>
   );

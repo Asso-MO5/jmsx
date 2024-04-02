@@ -7,18 +7,6 @@ const infos = [
       "Kazuhiko Nishi est un entrepreneur japonais, co-fondateur de Microsoft Japon et ASCII Corporation. Il est également un collectionneur d'art numérique et un artiste numérique.",
     img: "/nishi.webp",
   },
-  {
-    title: "Le programme",
-    content:
-      "ici un récapitulatif des événements de la semaine, des conférences, des ateliers, des expositions, des performances, des concerts, des projections de films, des installations, des jeux",
-    img: "/nishi.webp",
-  },
-  {
-    title: "Game Jam",
-    content:
-      "Oouveret à tous les étudiants de l'ISART, le Game Jam est un événement de 48 heures où les étudiants travaillent en équipe pour créer un jeu vidéo en partant de zéro. Le thème de cette année est 'Retro Futurism'.",
-    img: "/nishi.webp",
-  },
 ];
 
 export function StickyInfos() {
