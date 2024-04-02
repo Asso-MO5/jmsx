@@ -36,11 +36,11 @@ export function NewsletterForm() {
         onSubmit={handleSubmit}
       >
         <header className="text-center">
-          <h2>{`Restez Connecté avec JSMX !`}</h2>
+          <h2>{`Restez Connecté avec JMSX !`}</h2>
           <div className="italic">
           {`Rejoignez notre communauté passionnée et soyez les premiers à
             recevoir toutes les informations et annonces importantes concernant
-            JSMX directement dans votre boîte de réception !`}
+            JMSX directement dans votre boîte de réception !`}
           </div>
         </header>
         <fieldset>
