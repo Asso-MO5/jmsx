@@ -12,6 +12,21 @@ const silkscreen = Silkscreen({
 export const metadata: Metadata = {
   title: "J'MSX 24",
   description: "Convention MSX",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://jmsx24.com",
+    description: "Convention MSX",
+    siteName: "J'MSX 24",
+    images: [
+      {
+        url: "https://jmsx24.com/meta.png",
+        width: 1024,
+        height: 768,
+        alt: "J'MSX 24",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
