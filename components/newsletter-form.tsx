@@ -36,11 +36,11 @@ export function NewsletterForm() {
         onSubmit={handleSubmit}
       >
         <header className="text-center">
-          <h2>Restez Connecté avec JSMX 24 !</h2>
+          <h2>{`Restez Connecté avec JSMX 24 !`}</h2>
           <div className="italic">
-            Rejoignez notre communauté passionnée et soyez les premiers à
+          {`Rejoignez notre communauté passionnée et soyez les premiers à
             recevoir toutes les informations et annonces importantes concernant
-            JSMX 24 directement dans votre boîte de réception !
+            JSMX 24 directement dans votre boîte de réception !`}
           </div>
         </header>
         <fieldset>
@@ -58,7 +58,7 @@ export function NewsletterForm() {
             autoFocus
           />
         </fieldset>
-        {error &&  <div className="text-msx-lightRed text-center">Erreur lors de l'inscription</div>}
+        {error &&  <div className="text-msx-lightRed text-center">{"Erreur lors de l'inscription"}</div>}
         {success && <div className="text-msx-mediumGreen text-center">Inscription réussie !</div>}
         <button type="submit" className="btn" disabled={success}>
           {loading ? 'Patientez': "S'inscrire"}
