@@ -7,10 +7,9 @@ import { useEffect, useState } from "react";
 const menulinks = [
   { href: "/", label: "Accueil" },
   { href: "/infos", label: "Informations pratiques" },
- /** { href: "/programme", label: "Programme" },
+  { href: "/programme", label: "Programme" },
   { href: "/gamejam", label: "Game Jam" },
   { href: "/presse", label: "Presses" },
-  **/
 ];
 
 // .....................................................
@@ -81,8 +80,8 @@ function MenuDesktop() {
           </Link>
         ))}
       </nav>
-      {/*<Ticket /> */}
-      <div/>
+      <Ticket />
+      <div />
     </div>
   );
 }

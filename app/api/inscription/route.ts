@@ -1,20 +1,20 @@
 import type { NextRequest } from "next/server";
 import { createServerClient } from "@/utils";
 import { cookies } from "next/headers";
+import { tables } from "@/utils/supabase/tables";
 
 export const runtime = "edge";
 
 export async function POST(request: NextRequest) {
-  const requestBody = await request.text(); // Lire le corps comme texte brut
-  const formData = JSON.parse(requestBody); // Parser le texte brut en objet JSON
+  const requestBody = await request.text();
+  const formData = JSON.parse(requestBody); 
 
-  console.log("Data:", formData);
   const cookieStore = cookies();
   const supabase = createServerClient(cookieStore);
   const { data, error } = await supabase
-    .from('seats')
+    .from(tables.seats)
     .insert([
-      { ...formData } // Vos données à insérer
+      { ...formData } 
     ]);
 
 
