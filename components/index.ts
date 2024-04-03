@@ -1,2 +1,5 @@
 export * from './header-place'
 export * from './ticket'
+export * from './newsletter-form'
+export * from './poster'
+export * from './sticky-infos'

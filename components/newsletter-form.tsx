@@ -29,7 +29,7 @@ export function NewsletterForm() {
   }
 
   return (
-    <div className={dc([!isMobile,'absolute inset-0 flex justify-center items-center'] )}>
+    <div className={dc([!isMobile,'absolute inset-y-10 inset-x-0 flex justify-center items-center'] )}>
     <section className="flex items-center p-2 justify-center">
       <form
         className="max-w-[300px] flex flex-col gap-4 m-4 p-3 border-msx-darkBlue border bg-msx-black drop-shadow-[10px_10px_0_rgba(0,0,0,0.7)]"
