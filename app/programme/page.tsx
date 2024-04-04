@@ -33,6 +33,12 @@ const program = [
         type: "conférence",
         title: "L'avenir du MSX par Kazuhiko Nishi",
       },
+      
+      {
+        time: "16:30",
+        type: "présensation",
+        title: "ROOM 5, un jeu créé open source en live",
+      },
 
       {
         time: "16:30",
