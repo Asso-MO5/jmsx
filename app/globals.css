@@ -15,7 +15,7 @@
   }
 
   .btn {
-    @apply  bg-msx-mediumGreen text-white px-2 py-1  uppercase;
+    @apply bg-msx-mediumGreen text-white px-2 py-1  uppercase;
   }
 
   .dialog {
@@ -27,7 +27,7 @@
   }
 
   .input {
-    @apply  text-white p-2 bg-msx-lightBlue border-msx-darkBlue border;
+    @apply text-white p-2 bg-msx-lightBlue border-msx-darkBlue border;
   }
 }
 
@@ -77,7 +77,18 @@ dialog {
   background: rgba(0, 0, 0, 0.5);
 }
 
+h1 {
+  @apply text-5xl;
+}
 
 h2 {
-  @apply text-3xl text-msx-darkYellow;
+  @apply text-3xl text-msx-darkYellow mb-3;
+}
+
+ul {
+  @apply list-disc list-inside;
+}
+
+li {
+  @apply pb-2;
 }
