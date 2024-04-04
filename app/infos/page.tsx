@@ -53,9 +53,9 @@ export default function Infos() {
               href="https://www.ratp.fr/itineraires/gare%20du%20l%E2%80%99Est%2660%20Boulevard%20Richard%20Lenoir%2075011%20Paris"
               target="_blank"
             >
-              gare du l'Est
+              {"gare du l'Est"}
             </a>{" "}
-            et la <a href="https://www.ratp.fr/itineraires/Gare%20D%E2%80%99Austerlitz%2660%20Boulevard%20Richard%20Lenoir%2075011%20Paris" target="_blank">Gare D'Austerlitz</a>
+            et la <a href="https://www.ratp.fr/itineraires/Gare%20D%E2%80%99Austerlitz%2660%20Boulevard%20Richard%20Lenoir%2075011%20Paris" target="_blank">{"Gare D'Austerlitz"}</a>
           </p>
         </div>
       </div>
