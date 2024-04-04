@@ -33,6 +33,7 @@ const program = [
         type: "conférence",
         title: "L'avenir du MSX par Kazuhiko Nishi",
       },
+
       {
         time: "16:30",
         type: "Game jam",
@@ -58,7 +59,7 @@ export default function Progam() {
               <ul>
                 {day.events.map((event, index) => (
                   <li key={index}>
-                    <span className="text-msx-lightBlue">{event.time} </span>
+                    {/* <span className="text-msx-lightBlue">{event.time} </span> */}
                     <span className="text-msx-cyan">{event.type}:</span>
                     {` ${event.title}`}
                   </li>
