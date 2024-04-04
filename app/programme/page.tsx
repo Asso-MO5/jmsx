@@ -57,7 +57,7 @@ export default function Progam() {
           <h1 className="text-msx-magenta border-b border-msx-magenta">
             Programme
           </h1>
-          <p className="text-msx-gray italic text-center">{"Le programme peut être modifié"}</p>
+          <p className="text-msx-gray italic text-center">{"Le programme sera complété"}</p>
 
           {program.map((day, index) => (
             <div key={index} className="p-2 border border-msx-darkBlue">
