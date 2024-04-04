@@ -9,7 +9,7 @@ const silkscreen = Silkscreen({
   subsets: ["latin"],
 });
 
-const description =   "l'Association MO5 et le MSX Village organise la J'MSX 24, une convention dédié au MSX qui se déroulera le 22 et 23 juin 2024 à Paris en 2024."
+const description =   "l'Association MO5 et le MSX Village organisent la J'MSX 24, une convention dédiée au MSX qui se déroulera le 22 et 23 juin 2024 à Paris en 2024."
 
 export const metadata: Metadata = {
   title: "J'MSX 24",
