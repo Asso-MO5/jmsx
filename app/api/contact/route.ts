@@ -5,6 +5,9 @@ import validator from "validator";
 import { tables } from "@/utils/supabase/tables";
 import { mailer } from "@/utils/mail";
 
+
+export const runtime = 'edge';
+
 export async function POST(request: NextRequest) {
   const requestBody = await request.text();
   const formData = JSON.parse(requestBody); 
