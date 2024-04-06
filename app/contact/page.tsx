@@ -89,18 +89,18 @@ export default function Page() {
             )}
             {success && (
               <div className="text-msx-mediumGreen text-center">
-                Inscription réussie !
+                Message envoyé !
               </div>
             )}
             <button
               type="reset"
               className="btn bg-msx-darkRed"
-              disabled={success}
+              disabled={loading}
               onClick={handleReset}
             >
-              {loading ? "Patientez" : "Annuler"}
+              Annuler
             </button>
-            <button type="submit" className="btn" disabled={success}>
+            <button type="submit" className="btn" disabled={success || loading}>
               {loading ? "Patientez" : "Envoyer"}
             </button>
           </form>

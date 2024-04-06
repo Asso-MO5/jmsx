@@ -41,6 +41,17 @@ export async function POST(request: NextRequest) {
       { email, message } 
     ]);
 
+    fetch(process.env.DISCORD_HOOK ||'',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content: `**Nouveau message reçu**\n\n**Email**: ${email}\n**Message**: ${text}`
+      })
+    }); 
+
+
     if(error) {
       return new Response(JSON.stringify({ error }), {
         headers: {
