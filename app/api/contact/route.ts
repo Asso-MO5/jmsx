@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       { email, message } 
     ]);
 
-    fetch(process.env.DISCORD_HOOK ||'',{
+    await fetch(process.env.DISCORD_HOOK ||'',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
