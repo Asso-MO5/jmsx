@@ -1,45 +1,45 @@
-"use client";
-import { useState } from "react";
+'use client'
+import { useState } from 'react'
 
 export default function Page() {
   // === STATES ============================================================
-  const [email, setEmail] = useState("");
-  const [text, setText] = useState("");
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('')
+  const [text, setText] = useState('')
+  const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // === HANDLERS =========================================================
   const handleReset = () => {
-    setEmail("");
-    setText("");
-    setError(false);
-    setSuccess(false);
-  };
+    setEmail('')
+    setText('')
+    setError(false)
+    setSuccess(false)
+  }
 
   const handleClean = () => {
-    if (error) setError(false);
-    if (success) setSuccess(false);
-  };
+    if (error) setError(false)
+    if (success) setSuccess(false)
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email || !text || loading) return;
-    setLoading(true);
-    const response = await fetch("/api/contact", {
-      method: "POST",
+    e.preventDefault()
+    if (!email || !text || loading) return
+    setLoading(true)
+    const response = await fetch('/api/contact', {
+      method: 'POST',
       body: JSON.stringify({ email, text }),
-    });
+    })
 
     if (response.ok) {
-      setSuccess(true);
+      setSuccess(true)
     } else {
-      setError(true);
+      setError(true)
     }
-    setEmail("");
-    setText("");
-    setLoading(false);
-  };
+    setEmail('')
+    setText('')
+    setLoading(false)
+  }
 
   // === RENDER ===========================================================
 
@@ -63,8 +63,8 @@ export default function Page() {
                 className="input"
                 value={email}
                 onChange={(e) => {
-                  handleClean();
-                  setEmail(e.target.value);
+                  handleClean()
+                  setEmail(e.target.value)
                 }}
               />
             </fieldset>
@@ -74,11 +74,11 @@ export default function Page() {
                 name="text"
                 id="text"
                 className="input"
-                rows={text.split("\n").length + 2}
+                rows={text.split('\n').length + 2}
                 value={text}
                 onChange={(e) => {
-                  handleClean();
-                  setText(e.target.value);
+                  handleClean()
+                  setText(e.target.value)
                 }}
               />
             </fieldset>
@@ -92,20 +92,26 @@ export default function Page() {
                 Message envoyé !
               </div>
             )}
-            <button
-              type="reset"
-              className="btn bg-msx-darkRed"
-              disabled={loading}
-              onClick={handleReset}
-            >
-              Annuler
-            </button>
-            <button type="submit" className="btn" disabled={success || loading}>
-              {loading ? "Patientez" : "Envoyer"}
-            </button>
+            <div className="flex  justify-between gap-6 mt-2">
+              <button
+                type="submit"
+                className="btn"
+                disabled={success || loading}
+              >
+                {loading ? 'Patientez' : 'Envoyer'}
+              </button>
+              <button
+                type="reset"
+                className="btn bg-msx-darkRed"
+                disabled={loading}
+                onClick={handleReset}
+              >
+                Annuler
+              </button>
+            </div>
           </form>
         </div>
       </div>
     </main>
-  );
+  )
 }
