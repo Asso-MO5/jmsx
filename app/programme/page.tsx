@@ -1,53 +1,58 @@
 const program = [
   {
-    date: "Samedi 22 juin",
+    date: 'Samedi 22 juin',
     events: [
-      { time: "10:00", type: "Game jam", title: "Annonce du thème" },
+      { time: '10:00', type: 'Game jam', title: 'Annonce du thème' },
+
       {
-        time: "11:00",
-        type: "conférence",
-        title: "Konami et le MSX, les début de Kojima",
+        time: '11:00',
+        type: 'conférence',
+        title: 'Les capacités techniques du MSX',
       },
       {
-        time: "14:00",
-        type: "conférence",
+        time: '14:00',
+        type: 'conférence',
         title: "L'histoire du MSX par Kazuhiko Nishi",
       },
       {
-        time: "16:00",
-        type: "conférence",
-        title: "Les capacités techniques du MSX",
+        time: '11:00',
+        type: 'conférence',
+        title: 'Konami et le MSX, les début de Kojima',
       },
     ],
   },
   {
-    date: "Dimanche 23 juin",
+    date: 'Dimanche 23 juin',
     events: [
       {
-        time: "10:00",
-        type: "conférence",
-        title: "Développer un jeu MSX en 2024",
+        time: '10:00',
+        type: 'conférence',
+        title: 'Développer un jeu MSX en 2024',
       },
       {
-        time: "14:00",
-        type: "conférence",
+        time: '12:00',
+        type: 'présensation',
+        title: 'ROOM 5, un jeu créé open source en live',
+      },
+      {
+        time: '14:00',
+        type: 'conférence',
         title: "L'avenir du MSX par Kazuhiko Nishi",
       },
-      
       {
-        time: "16:30",
-        type: "présensation",
-        title: "ROOM 5, un jeu créé open source en live",
+        time: '12:00',
+        type: 'présensation',
+        title: 'Les meilleurs Homebrews MSX',
       },
 
       {
-        time: "16:30",
-        type: "Game jam",
-        title: "présentation des projets réalisés",
+        time: '16:30',
+        type: 'Game jam',
+        title: 'présentation des projets réalisés',
       },
     ],
   },
-];
+]
 
 export default function Progam() {
   return (
@@ -57,7 +62,9 @@ export default function Progam() {
           <h1 className="text-msx-magenta border-b border-msx-magenta">
             Programme
           </h1>
-          <p className="text-msx-gray italic text-center">{"Le programme sera complété"}</p>
+          <p className="text-msx-gray italic text-center">
+            {'Le programme sera complété'}
+          </p>
 
           {program.map((day, index) => (
             <div key={index} className="p-2 border border-msx-darkBlue">
@@ -76,5 +83,5 @@ export default function Progam() {
         </div>
       </div>
     </main>
-  );
+  )
 }
