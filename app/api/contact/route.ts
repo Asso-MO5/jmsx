@@ -6,7 +6,7 @@ import { tables } from "@/utils/supabase/tables";
 import { mailer } from "@/utils/mail";
 
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export async function POST(request: NextRequest) {
   const requestBody = await request.text();
@@ -49,13 +49,6 @@ export async function POST(request: NextRequest) {
         },
       });
     }
-
-   await mailer.sendMail({
-    from: process.env.MAIL_USER,
-    to: "JSMX ,jmsx@mo5.com",
-    subject: "Nouveau message de " + email,
-    text: validator.unescape(message)
-  });
-
+    
   return new Response('OK');
 }
