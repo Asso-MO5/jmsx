@@ -6,7 +6,7 @@ import { tables } from "@/utils/supabase/tables";
 import { mailer } from "@/utils/mail";
 
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   const requestBody = await request.text();
