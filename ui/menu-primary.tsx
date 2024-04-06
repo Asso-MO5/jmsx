@@ -1,6 +1,7 @@
 "use client";
 import { Ticket } from "@/components";
 import { useIsMobile } from "@/hooks";
+import { dc } from "@/utils/dynamic-classes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -10,7 +11,10 @@ const menulinks = [
   { href: "/programme", label: "Programme" },
   /* { href: "/gamejam", label: "Game Jam" },
   { href: "/presse", label: "Presses" }, */
+  { href: "/contact", label: "Contact" },
 ];
+
+
 
 // .....................................................
 
@@ -57,6 +61,7 @@ function MenuMobile() {
                 key={index}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
+
               >
                 {link.label}
               </Link>
@@ -71,11 +76,30 @@ function MenuMobile() {
 // .....................................................
 
 function MenuDesktop() {
+const [activeLink, setActiveLink] = useState(window.location.pathname ||'/')
+
+
+  const checkActive = (href: string) => {
+    if (href === "/") return activeLink === href;
+    return activeLink.includes(href);
+  };
+
+
+
   return (
     <div className="flex gap-4 p-2 items-center justify-between sticky top-0 bg-msx-black z-50">
       <nav className="flex gap-4  items-center whitespace-nowrap">
         {menulinks.map((link, index) => (
-          <Link key={index} href={link.href}>
+          <Link
+            key={index}
+            href={link.href}
+            onClick={() => setActiveLink(link.href)}
+            className={dc("border-b-2", [
+              activeLink ===  link.href,
+              "border-msx-magenta",
+              "border-transparent",
+            ])}
+          >
             {link.label}
           </Link>
         ))}

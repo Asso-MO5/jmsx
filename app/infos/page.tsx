@@ -11,6 +11,12 @@ export default function Infos() {
         />
       </div>
       <div className="flex flex-col p-4 gap-5">
+      <div>
+          <h2>HORAIRES</h2>
+          <p>Samedi 22 et dimanche 23 juin 2024</p>
+          <p><span className="text-msx-magenta">publique:</span> de 10h à 19h30</p>
+          <p><span className="text-msx-magenta">Exposants / game jam:</span> de 9h30 à 19h30</p>
+        </div>
         <div>
           <h2>Lieu</h2>
           <p>ISART DIGITAL</p>
