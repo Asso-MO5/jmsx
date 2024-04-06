@@ -15,7 +15,7 @@ export function Poster() {
     <div className="relative">
       <img
         src="/poster.webp"
-        alt="Affiche JMSX 24"
+        alt="Affiche J'MSX 24"
         className="w-full h-full object-cover"
         title="By Kobipixel"
       />
