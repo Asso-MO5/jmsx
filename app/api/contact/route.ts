@@ -3,7 +3,6 @@ import { createServerClient } from "@/utils";
 import { cookies } from "next/headers";
 import validator from "validator";
 import { tables } from "@/utils/supabase/tables";
-import { mailer } from "@/utils/mail";
 
 
 export const runtime = 'edge';
@@ -49,6 +48,6 @@ export async function POST(request: NextRequest) {
         },
       });
     }
-    
+
   return new Response('OK');
 }
