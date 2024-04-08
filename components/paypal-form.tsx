@@ -189,13 +189,6 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
     if (error) setError('')
   }, [selectedPack, email, packFilter])
 
-  console.log(
-    packs.filter((pack) => {
-      console.log(pack.type.match(/tudiant|jam/i))
-      return true
-    })
-  )
-
   // === RENDER ===========================================================
   return (
     <div className="p-3 flex items-center justify-center">

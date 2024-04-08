@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 type Invoice = {
   id: string
 }
+
 export function Invoice({ id }: Invoice) {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<any>(null)
@@ -15,7 +16,6 @@ export function Invoice({ id }: Invoice) {
       const response = await fetch(`/api/invoice/${id}`)
       const data = await response.json()
       setData(data)
-      console.log(data)
     } catch (error) {
       console.error(error)
       setError('Impossible de récupérer les données')
@@ -26,6 +26,7 @@ export function Invoice({ id }: Invoice) {
   useEffect(() => {
     getData()
   }, [])
+
   return (
     <div className="max-w-[512px]  m-auto p-3">
       {loading && <p>Loading...</p>}
