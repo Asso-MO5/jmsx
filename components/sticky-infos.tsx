@@ -1,13 +1,14 @@
-import { dc } from "@/utils/dynamic-classes";
+import { dc } from '@/utils/dynamic-classes'
+import Link from 'next/link'
 
 const infos = [
   {
-    title: "Invité: Kazuhiko Nishi",
+    title: 'Invité: Kazuhiko Nishi',
     content:
-      "Kazuhiko Nishi est un entrepreneur japonais, co-fondateur de Microsoft Japon et ASCII Corporation. Il est également un collectionneur d'art numérique et un artiste numérique.",
-    img: "/nishi.webp",
+      'Kazuhiko Nishi est un entrepreneur japonais, co-fondateur de Microsoft Japon et ASCII Corporation et créateur de la norme MSX.',
+    img: '/nishi.webp',
   },
-];
+]
 
 export function StickyInfos() {
   return (
@@ -16,8 +17,12 @@ export function StickyInfos() {
         <article
           key={index}
           className={dc(
-            "flex flex-col items-center px-5 gap-4 lg:text-inherit text-sm w-full",
-            [index % 2 === 0, "md:flex-row", "md:flex-row-reverse md:text-right"]
+            'flex flex-col items-center px-5 gap-4 lg:text-inherit text-sm w-full',
+            [
+              index % 2 === 0,
+              'md:flex-row',
+              'md:flex-row-reverse md:text-right',
+            ]
           )}
         >
           <img
@@ -31,12 +36,15 @@ export function StickyInfos() {
               {info.title}
             </h2>
             <p className="text-msx-white">{info.content}</p>
-            <button className="px-4 py-2 mt-3 text-msx-white border border-msx-darkBlue sm:self-end">
+            <Link
+              href="/programme"
+              className="px-4 py-2 mt-3 text-msx-white border border-msx-darkBlue sm:self-end"
+            >
               En savoir plus
-            </button>
+            </Link>
           </div>
         </article>
       ))}
     </section>
-  );
+  )
 }
