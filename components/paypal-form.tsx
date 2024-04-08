@@ -1,150 +1,307 @@
-"use client";
-import { createClient, createServerClient, texts } from "@/utils";
-import { loadScript } from "@paypal/paypal-js";
-import { cookies } from "next/headers";
+'use client'
+import { TicketsPacks } from '@/app/api/inscription/route'
+import { texts } from '@/utils'
+import { dc } from '@/utils/dynamic-classes'
+import { loadScript } from '@paypal/paypal-js'
+import { useRouter } from 'next/navigation'
+import { v4 as uuidv4 } from 'uuid'
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react'
 
 type PaypalModalProps = {
-  onClose: () => void;
-};
+  onClose: () => void
+}
 
-const currency_code = "EUR";
+const currency_code = 'EUR'
 export function PaypalModal({ onClose }: PaypalModalProps) {
+  // === HOOKS ============================================================
+  const router = useRouter()
+
   // === STATES ============================================================
 
-  const [seats, setSeats] = useState(1);
-  const form = useRef({ seats: 1 });
-  const [paypalLoaded, setPaypalLoaded] = useState(false);
-  const id = "paypal-button-container";
+  const [loading, setLoading] = useState(false)
+  const [packs, setPacks] = useState<TicketsPacks[]>([])
+  const [packFilter, setPackFilter] = useState('visiteurs')
+  const [selectedPack, setSelectedPack] = useState<TicketsPacks | null>(null)
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
+
+  // === REFS ==============================================================
+  const form = useRef<TicketsPacks | null>()
+  const id = 'paypal-button-container'
 
   // === HANDLERS =========================================================
 
-  const handleIncrement = () => {
-    const newSeat = seats + 1;
-    setSeats(newSeat);
-    form.current.seats = newSeat;
-  };
+  const handleChangeEmail = (value: string) => {
+    setEmail(value)
+  }
 
-  const handleDecrement = () => {
-    if (seats === 1) return;
-    const newSeat = seats - 1;
-    setSeats(newSeat);
-    form.current.seats = newSeat;
-  };
+  const handleFetchInfos = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/inscription')
+      const data: TicketsPacks[] = await res.json()
+      setPacks(data)
+      setSelectedPack(data[0])
+    } catch (err) {
+      setError(
+        'Une erreur est survenue lors de la récupération des informations'
+      )
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const initPaypal = async () => {
-    const supabase = createClient();
+    setLoading(true)
 
-    // Récupération des données depuis votre base de données
-    const test = await supabase.from("seats").select();
-
-    console.log(test?.data);
-
-    if (paypalLoaded) return;
     const paypal = await loadScript({
-      clientId: process.env.NEXT_PUBLIC_PAYPAL_API_KEY || "",
+      clientId: process.env.NEXT_PUBLIC_PAYPAL_API_KEY || '',
       commit: false,
       vault: true,
-      locale: "fr_FR",
+      locale: 'fr_FR',
       currency: currency_code,
       merchantId: process.env.NEXT_PUBLIC_PAYPAL_MERCHANT_ID,
-    });
+    })
 
-    if (!paypal?.Buttons || !id) return;
+    if (!paypal?.Buttons || !id) return
 
-    const container = document.getElementById(id);
-    if (container) container.innerHTML = "";
+    const container = document.getElementById(id)
+    if (container) container.innerHTML = ''
 
     try {
       await paypal
         .Buttons({
           style: {
-            color: "blue",
-            shape: "rect",
+            color: 'blue',
+            shape: 'rect',
           },
 
           createOrder(_data, actions) {
-            const amount = 15;
+            console.log(form.current)
+            const amount = form.current ? form.current.price : 15
 
             return actions.order.create({
-              intent: "CAPTURE",
+              intent: 'CAPTURE',
               purchase_units: [
                 {
                   amount: {
                     currency_code,
-                    value: `${amount * form.current.seats}`,
+                    value: `${amount}`,
                   },
                 },
               ],
-            });
+            })
           },
           async onApprove(_data, actions) {
-            if (!actions.order) return;
-            const details = await actions.order.capture();
+            if (!actions.order) return
+            const details = await actions.order.capture()
             //@ts-ignore
-            const { payer, id: transaction_id } = details;
+            const { payer, id: transaction_id } = details
 
-            console.log(details);
-
-            await fetch("api/inscription", {
-              method: "POST",
+            await fetch('/api/inscription', {
+              method: 'POST',
               headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                seat_number: form.current.seats,
+                pack_name: form.current?.name || selectedPack?.name,
+                day_one: !!form.current?.days.find((day) => day === 1),
+                day_two: !!form.current?.days.find((day) => day === 2),
                 transaction_id,
-                email: payer?.email_address || "unknown",
-                name: payer?.name?.given_name || "unknown",
-                lastname: payer?.name?.surname || "unknown",
-                status: "paid",
-                game_jam: false,
+                email: payer?.email_address || 'unknown',
+                name: payer?.name?.given_name || 'unknown',
+                lastname: payer?.name?.surname || 'unknown',
+                amount: form.current?.price || selectedPack?.price,
+                status: 'paid',
+                game_jam: form.current?.type === 'gameJam',
+                type: form.current?.type || selectedPack?.type,
               }),
-            });
-
-            onClose();
+            })
+            router.push('/ticket/' + transaction_id)
+            onClose()
           },
           onError: (err) => {
-            onClose();
-
-            console.error(err);
+            setError('Une erreur est survenue lors du paiement')
           },
         })
-        .render(`#${id}`);
+        .render(`#${id}`)
     } catch (error) {
-      console.error("failed to render the PayPal Buttons", error);
+      console.error('failed to render the PayPal Buttons', error)
     } finally {
-      setPaypalLoaded(true);
+      setLoading(false)
     }
-  };
+  }
+
+  const handleSubmitStudent = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (!email.includes('@isart.com')) {
+      setError('Veuillez renseigner une adresse email ISART')
+      return
+    }
+    setLoading(true)
+
+    try {
+      const transaction_id = uuidv4()
+      const res = await fetch('api/inscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pack_name: form.current?.name || selectedPack?.name,
+          day_one: !!form.current?.days.find((day) => day === 1),
+          day_two: !!form.current?.days.find((day) => day === 2),
+          transaction_id: transaction_id,
+          email: email,
+          name: email.split('@')[0],
+          lastname: '',
+          amount: form.current?.price || selectedPack?.price,
+          status: 'paid',
+          game_jam: form.current?.type === 'gameJam',
+          type: form.current?.type || selectedPack?.type,
+        }),
+      })
+
+      if (!res.ok) throw new Error('failed to fetch')
+      router.push('/ticket/' + transaction_id)
+      onClose()
+    } catch (error) {
+      setError("Une erreur est survenue lors de l'inscription")
+      console.error('failed to render the PayPal Buttons', error)
+    }
+    setLoading(false)
+  }
 
   // === EFFECTS ==========================================================
+
   useEffect(() => {
-    initPaypal();
-  }, []);
+    handleFetchInfos()
+    initPaypal()
+  }, [])
+
+  useEffect(() => {
+    form.current = selectedPack
+  }, [selectedPack])
+
+  useEffect(() => {
+    if (error) setError('')
+  }, [selectedPack, email, packFilter])
+
+  console.log(
+    packs.filter((pack) => {
+      console.log(pack.type.match(/tudiant|jam/i))
+      return true
+    })
+  )
 
   // === RENDER ===========================================================
   return (
     <div className="p-3 flex items-center justify-center">
       <div className="max-w-96 flex flex-col gap-4 justify-center">
-        <div className="text-center">{texts.inscription_description}
-        PLUSIEURS CHOIX - à implémenter. 
-        </div>
-        <div className="text-center">{texts.inscription_seat}</div>
-        <div className="text-2xl flex justify-between">
-          <button type="button" onClick={handleDecrement} className="p-3">
-            -
-          </button>
-          <div className="text-4xl text-msx-darkYellow flex items-center">
-            {seats}
+        <div className="text-center">{texts.inscription_description}</div>
+        {error && (
+          <div className="text-msx-lightRed text-center text-lg border border-msx-mediumRed p-2">
+            {'! '}
+            {error}
           </div>
-          <button type="button" onClick={handleIncrement} className="p-3">
-            +
-          </button>
+        )}
+        {loading && <div>Chargement...</div>}
+
+        <div className="flex gap-3 justify-center text-sm">
+          {['visiteurs', 'exposants', 'étudiants ISART'].map((type) => (
+            <button
+              key={type}
+              onClick={() => {
+                setPackFilter(type)
+                setSelectedPack(
+                  packs.filter((pack) =>
+                    type.match(/tudiants|students/)
+                      ? !!pack.type.match(/students|gamejam/i)
+                      : pack.name.includes(type)
+                  )[0]
+                )
+              }}
+              className={dc('border border-msx-mediumGreen p-1', [
+                packFilter === type,
+                'bg-msx-mediumGreen',
+              ])}
+            >
+              {type}
+            </button>
+          ))}
         </div>
-        <div id={id} />
+        <div className="text-2xl flex flex-col gap-3">
+          {packs
+            .filter((pack) =>
+              packFilter.includes('tudiant')
+                ? !!pack.type.match(/students|gamejam/i)
+                : pack.name.includes(packFilter)
+            )
+            .map((pack) => (
+              <button
+                key={pack.name}
+                className={dc(
+                  'flex items-center justify-between border  p-2 text-sm gap-2 relative',
+                  [
+                    selectedPack?.name === pack.name,
+                    'border-msx-mediumGreen',
+                    'border-msx-lightBlue',
+                  ]
+                )}
+                onClick={() => setSelectedPack(pack)}
+              >
+                <div>
+                  {selectedPack?.name === pack.name && (
+                    <div className="absolute top-0 right-0">✔️</div>
+                  )}
+                  <div
+                    className={dc([
+                      selectedPack?.name === pack.name,
+                      'text-msx-mediumGreen',
+                      'text-msx-darkYellow',
+                    ])}
+                  >
+                    {pack.name}
+                  </div>
+                  <div>{pack.description}</div>
+                </div>
+                <div
+                  className={dc('text-lg', [
+                    selectedPack?.name === pack.name,
+                    'text-msx-mediumGreen',
+                    'text-msx-cyan',
+                  ])}
+                >
+                  {pack.price === 0 ? 'gratuit' : `${pack.price}€`}
+                </div>
+              </button>
+            ))}
+        </div>
+        <div
+          id={id}
+          className={dc([packFilter.includes('étudiants'), 'hidden'])}
+        >
+          <div className="flex items-center justify-center text-msx-cyan">
+            Chargement du module de paiement...
+          </div>
+        </div>
+        {packFilter.includes('étudiants') && (
+          <form className="flex flex-col gap-8" onSubmit={handleSubmitStudent}>
+            <fieldset>
+              <label htmlFor="email">{"Email ('@isart.com')"}</label>
+              <input
+                type="email"
+                className="input"
+                onChange={(e) => handleChangeEmail(e.target.value)}
+                value={email}
+              />
+            </fieldset>
+            <button className="btn">Valider</button>
+          </form>
+        )}
       </div>
     </div>
-  );
+  )
 }
