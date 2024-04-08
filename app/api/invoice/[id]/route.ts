@@ -5,7 +5,6 @@ import { tables } from '@/utils/supabase/tables'
 
 export const runtime = 'edge'
 
-
 export async function GET(_request: NextRequest,{params: { id }}: any) {
   const cookieStore = cookies()
   const supabase = createServerClient(cookieStore)
