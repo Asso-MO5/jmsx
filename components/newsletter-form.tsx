@@ -4,7 +4,7 @@ import { dc } from '@/utils/dynamic-classes'
 import { useState } from 'react'
 
 export function NewsletterForm() {
-  const isMobile = useIsMobile(850)
+  const isMobile = useIsMobile(1140)
   const [email, setEmail] = useState('')
   const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -33,12 +33,12 @@ export function NewsletterForm() {
       className={dc([
         isMobile,
         '',
-        'absolute inset-y-10 inset-x-0 flex justify-center items-center',
+        'absolute inset-y-5 inset-x-0 flex justify-center items-center pointer-events-none',
       ])}
     >
       <section className="flex items-center p-2 justify-center">
         <form
-          className="max-w-[300px] flex flex-col gap-4 m-4 p-3 border-msx-darkBlue border bg-msx-black drop-shadow-[10px_10px_0_rgba(0,0,0,0.7)]"
+          className="lg:max-w-[300px] flex flex-col gap-4 m-4 p-3 border-msx-darkBlue border bg-msx-black drop-shadow-[10px_10px_0_rgba(0,0,0,0.7)] pointer-events-auto"
           onSubmit={handleSubmit}
         >
           <header className="text-center">
@@ -49,7 +49,7 @@ export function NewsletterForm() {
             J'MSX directement dans votre boîte de réception !`}
             </div>
           </header>
-          <fieldset>
+          <fieldset className="max-w-[300px] m-auto">
             <label htmlFor="email" className="sr-only">
               Email
             </label>
@@ -70,11 +70,15 @@ export function NewsletterForm() {
             </div>
           )}
           {success && (
-            <div className="text-msx-mediumGreen text-center">
+            <div className="text-msx-mediumGreen text-center ">
               Inscription réussie !
             </div>
           )}
-          <button type="submit" className="btn" disabled={success}>
+          <button
+            type="submit"
+            className="btn max-w-[300px] w-full m-auto"
+            disabled={success}
+          >
             {loading ? 'Patientez' : "S'inscrire"}
           </button>
         </form>

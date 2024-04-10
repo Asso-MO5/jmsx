@@ -1,4 +1,4 @@
-import { NewsletterForm, Poster } from '@/components'
+import { NewsletterForm, Partners, Poster } from '@/components'
 import { StickyInfos } from '@/components/sticky-infos'
 
 export default function Home() {
@@ -7,6 +7,7 @@ export default function Home() {
       <Poster />
       <NewsletterForm />
       <StickyInfos />
+      <Partners />
     </main>
   )
 }

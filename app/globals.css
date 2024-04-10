@@ -1,10 +1,10 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 * {
   box-sizing: border-box;
-  scrollbar-color: theme("colors.msx.cyan") transparent;
+  scrollbar-color: theme('colors.msx.cyan') transparent;
   scrollbar-width: thin;
   outline: none;
 }
@@ -32,13 +32,13 @@
 }
 
 body {
-  background: theme("colors.msx.black");
-  color: theme("colors.msx.white");
+  background: theme('colors.msx.black');
+  color: theme('colors.msx.white');
   font-size: 1rem;
 }
 
 a {
-  color: theme("colors.msx.cyan");
+  color: theme('colors.msx.cyan');
 }
 
 ::-webkit-scrollbar {
@@ -50,7 +50,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme("colors.msx.cyan");
+  background: theme('colors.msx.cyan');
   transition: 200ms ease-in-out;
 }
 
@@ -91,4 +91,13 @@ ul {
 
 li {
   @apply pb-2;
+}
+
+[data-hide-scrollbar]::-webkit-scrollbar {
+  display: none;
+}
+
+[data-hide-scrollbar] {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
