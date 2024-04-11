@@ -31,7 +31,7 @@ const program = [
       },
       {
         time: '12:00',
-        type: 'présensation',
+        type: 'présentation',
         title: 'ROOM 5, un jeu créé open source en live',
       },
       {
@@ -41,7 +41,7 @@ const program = [
       },
       {
         time: '12:00',
-        type: 'présensation',
+        type: 'présentation',
         title: 'Les meilleurs Homebrews MSX',
       },
 
