@@ -181,7 +181,9 @@ export async function POST(request: NextRequest) {
     })
   }
 
-   const { data: seats } = await supabase.from(tables.seats).select('id')
+   const { data: seats } = await supabase.from(tables.seats).select('*')
+
+   const total = seats ? seats.reduce((acc, seat) => acc + seat.amount, 0) : 0
 
   await fetch(process.env.DISCORD_HOOK || '', {
     method: 'POST',
@@ -189,7 +191,9 @@ export async function POST(request: NextRequest) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      content: `**Nouvel participant**
+      content: `
+      --------------------------------
+      **Nouveau participant**
       **Email**: ${formData.email}
       **Type**: ${formData.pack_name}
       **N° de transaction**: ${formData.transaction_id}
@@ -197,6 +201,7 @@ export async function POST(request: NextRequest) {
       **type**: ${formData.type}
       --------------------------------
       **Nombre de participants**: ${seats ? seats.length : 0}
+      **Cagnotte: ** \`${total}€\`
       `,
     }),
   })
