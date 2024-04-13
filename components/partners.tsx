@@ -22,7 +22,7 @@ export function Partners() {
       <h2 className="text-lg">Nos Partenaires</h2>
 
       <div
-        className="flex gap-6 w-full overflow-x-auto md:overflow-x-hidden md:flex-wrap scroll-smooth snap-start snap-mandatory md:justify-center "
+        className="flex gap-6 w-full overflow-x-auto md:overflow-x-hidden md:flex-wrap scroll-smooth snap-start snap-mandatory md:justify-center"
         data-hide-scrollbar
       >
         {partners.map((partner) => (

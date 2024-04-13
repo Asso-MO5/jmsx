@@ -72,7 +72,7 @@ export default function Progam() {
               <ul>
                 {day.events.map((event, index) => (
                   <li key={index}>
-                    {/* <span className="text-msx-lightBlue">{event.time} </span> */}
+                    <span className="text-msx-lightBlue">{event.time} </span>
                     <span className="text-msx-cyan">{event.type}:</span>
                     {` ${event.title}`}
                   </li>
