@@ -15,7 +15,7 @@ const program = [
         title: "L'histoire du MSX par Kazuhiko Nishi",
       },
       {
-        time: '11:00',
+        time: '16:00',
         type: 'conférence',
         title: 'Konami et le MSX, les début de Kojima',
       },
@@ -40,7 +40,7 @@ const program = [
         title: "L'avenir du MSX par Kazuhiko Nishi",
       },
       {
-        time: '12:00',
+        time: '15:30',
         type: 'présentation',
         title: 'Les meilleurs Homebrews MSX',
       },
@@ -63,7 +63,9 @@ export default function Progam() {
             Programme
           </h1>
           <p className="text-msx-gray italic text-center">
-            {'Le programme sera complété'}
+            {
+              'Le programme sera complété, les horaires sont susceptibles de changer'
+            }
           </p>
 
           {program.map((day, index) => (
