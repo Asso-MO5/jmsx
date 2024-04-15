@@ -298,7 +298,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
         {packFilter.includes('exposants') && (
           <div>
             {
-              "Les exposants bénéficient d'une table de 1.6m sur 60cm, d'un accès à l'électricité.Le prêt de machine et écran est inclus. "
+              "Les exposants bénéficient d'une table de 1.6m sur 60cm, d'un accès à l'électricité. Le prêt de machine et écran est inclus. "
             }
             Pour toute demande particulière, vous pouvez nous{' '}
             <span>
