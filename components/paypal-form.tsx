@@ -7,9 +7,10 @@ import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 
 type PaypalModalProps = {
-  onClose: () => void
+  onClose?: () => void
 }
 
 const currency_code = 'EUR'
@@ -119,7 +120,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
               }),
             })
             router.push('/ticket/' + transaction_id)
-            onClose()
+            onClose?.()
           },
           onError: (err) => {
             setError('Une erreur est survenue lors du paiement')
@@ -166,7 +167,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
 
       if (!res.ok) throw new Error('failed to fetch')
       router.push('/ticket/' + transaction_id)
-      onClose()
+      onClose?.()
     } catch (error) {
       setError("Une erreur est survenue lors de l'inscription")
       console.error('failed to render the PayPal Buttons', error)
@@ -293,6 +294,17 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
             </fieldset>
             <button className="btn">Valider</button>
           </form>
+        )}
+        {packFilter.includes('exposants') && (
+          <div>
+            {
+              "Les exposants bénéficient d'une table de 1.6m sur 60cm, d'un accès à l'électricité.Le prêt de machine et écran est inclus. "
+            }
+            Pour toute demande particulière, vous pouvez nous{' '}
+            <span>
+              <Link href="/contact">contacter</Link>
+            </span>
+          </div>
         )}
       </div>
     </div>

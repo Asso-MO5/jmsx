@@ -7,6 +7,13 @@ const infos = [
     content:
       'Kazuhiko Nishi est un entrepreneur japonais, co-fondateur de Microsoft Japon et ASCII Corporation et créateur de la norme MSX.',
     img: '/nishi.webp',
+    showMore: true,
+  },
+  {
+    title: 'Invité: Cousin Hubert',
+    content:
+      "Amateur de jeux vidéo japonais, Cousin Hubert a décidé d'apprendre cette langue sur le tard et de plonger dans le gouffre sans fond des jeux sur ordinateur japonais des années 80-90. Pour combler sa solitude de collectionneur de retrogaming japonais de niche, il a créé sa chaîne Youtube pour rencontrer ses pairs et chaque jour, ils échangent et en apprennent toujours davantage sur ce merveilleux univers.",
+    img: './c_hubert.webp',
   },
 ]
 
@@ -36,12 +43,14 @@ export function StickyInfos() {
               {info.title}
             </h2>
             <p className="text-msx-white">{info.content}</p>
-            <Link
-              href="/programme"
-              className="px-4 py-2 mt-3 text-msx-white border border-msx-darkBlue sm:self-end"
-            >
-              En savoir plus
-            </Link>
+            {info.showMore && (
+              <Link
+                href="/programme"
+                className="px-4 py-2 mt-3 text-msx-white border border-msx-darkBlue sm:self-end"
+              >
+                En savoir plus
+              </Link>
+            )}
           </div>
         </article>
       ))}
