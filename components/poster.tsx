@@ -1,18 +1,18 @@
-"use client"
-import { texts } from "@/utils";
-import { useState } from "react";
+'use client'
+import { texts } from '@/utils'
+import { useState } from 'react'
 
-const siteCreatorLink = "https://www.pixelart.fr/",
+const siteCreatorLink = 'https://www.pixelart.fr/',
   siteCreatorName = 'Olivier "Kobipixel" Huard',
-  imageCreatorLink = "/kobipixel.webp";
+  imageCreatorLink = '/kobipixel.webp'
 
 /**
  * @description ICI, on affiche l'image avec les infos de son créateur
  */
 export function Poster() {
-  const [seeFace, setSeeFace] = useState(false);
+  const [seeFace, setSeeFace] = useState(false)
   return (
-    <div className="relative">
+    <div>
       <img
         src="/poster.webp"
         alt="Affiche J'MSX 24"
@@ -40,5 +40,5 @@ export function Poster() {
         </a>
       </div>
     </div>
-  );
+  )
 }
