@@ -29,60 +29,52 @@ export function NewsletterForm() {
   }
 
   return (
-    <div
-      className={dc([
-        isMobile,
-        '',
-        'absolute inset-y-5 inset-x-0 flex justify-center items-center pointer-events-none',
-      ])}
-    >
-      <section className="flex items-center p-2 justify-center">
-        <form
-          className="lg:max-w-[300px] flex flex-col gap-4 m-4 p-3 border-msx-darkBlue border bg-msx-black drop-shadow-[10px_10px_0_rgba(0,0,0,0.7)] pointer-events-auto"
-          onSubmit={handleSubmit}
-        >
-          <header className="text-center">
-            <h2>{`Restez Connecté avec J'MSX !`}</h2>
-            <div className="italic">
-              {`Rejoignez notre communauté passionnée et soyez les premiers à
+    <section className="flex items-center p-2 justify-center">
+      <form
+        className="lg:max-w-[500px] flex flex-col gap-4 m-4 p-3 border-msx-darkBlue border bg-msx-black drop-shadow-[10px_10px_0_rgba(0,0,0,0.7)] pointer-events-auto"
+        onSubmit={handleSubmit}
+      >
+        <header className="text-center">
+          <h2>{`Restez Connecté avec J'MSX !`}</h2>
+          <div className="italic">
+            {`Rejoignez notre communauté passionnée et soyez les premiers à
             recevoir toutes les informations et annonces importantes concernant
             J'MSX directement dans votre boîte de réception !`}
-            </div>
-          </header>
-          <fieldset className="max-w-[300px] m-auto">
-            <label htmlFor="email" className="sr-only">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Votre adresse email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input w-full"
-              autoFocus
-            />
-          </fieldset>
-          {error && (
-            <div className="text-msx-lightRed text-center">
-              {"Erreur lors de l'inscription"}
-            </div>
-          )}
-          {success && (
-            <div className="text-msx-mediumGreen text-center ">
-              Inscription réussie !
-            </div>
-          )}
-          <button
-            type="submit"
-            className="btn max-w-[300px] w-full m-auto"
-            disabled={success}
-          >
-            {loading ? 'Patientez' : "S'inscrire"}
-          </button>
-        </form>
-      </section>
-    </div>
+          </div>
+        </header>
+        <fieldset className="max-w-[300px] m-auto">
+          <label htmlFor="email" className="sr-only">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Votre adresse email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="input w-full"
+            autoFocus
+          />
+        </fieldset>
+        {error && (
+          <div className="text-msx-lightRed text-center">
+            {"Erreur lors de l'inscription"}
+          </div>
+        )}
+        {success && (
+          <div className="text-msx-mediumGreen text-center ">
+            Inscription réussie !
+          </div>
+        )}
+        <button
+          type="submit"
+          className="btn max-w-[300px] w-full m-auto"
+          disabled={success}
+        >
+          {loading ? 'Patientez' : "S'inscrire"}
+        </button>
+      </form>
+    </section>
   )
 }
