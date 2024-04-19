@@ -60,7 +60,7 @@ export function StickyInfos() {
           </div>
         </article>
       ))}
-      <div className="text-xs text-msx-darkBlue">
+      <div className="text-xs text-msx-darkBlue p-4">
         {
           "Bien que la présence des invités soit confirmée, il est possible que des annulations surviennent en raison de contraintes professionnelles, de maladies, de perturbations de voyage ou d'autres imprévus. L'organisation de JMSX ne peut être tenue responsable de ces annulations et cela ne constitue pas un motif valable pour le remboursement des billets."
         }
