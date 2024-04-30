@@ -79,7 +79,6 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
           },
 
           createOrder(_data, actions) {
-            console.log(form.current)
             const amount = form.current ? form.current.price : 15
 
             return actions.order.create({
@@ -90,6 +89,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
                     currency_code,
                     value: `${amount}`,
                   },
+                  description: 'JSMX',
                 },
               ],
             })
