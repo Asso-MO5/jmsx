@@ -89,7 +89,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
                     currency_code,
                     value: `${amount}`,
                   },
-                  description: 'JSMX',
+                  description: 'JMSX',
                 },
               ],
             })
