@@ -171,7 +171,7 @@ export async function POST(request: NextRequest) {
   const supabase = createServerClient(cookieStore)
   const { data, error } = await supabase
     .from(tables.seats)
-    .insert([{ ...formData }])
+    .insert([{ ...formData, sended_state:'' }])
 
   if (error) {
     return new Response(JSON.stringify({ error }), {
