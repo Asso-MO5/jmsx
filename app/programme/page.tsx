@@ -68,12 +68,12 @@ export default function Progam() {
             }
           </p>
 
-          {program.map((day, index) => (
-            <div key={index} className="p-2 border border-msx-darkBlue">
+          {program.map((day) => (
+            <div key={day.date} className="p-2 border border-msx-darkBlue">
               <h2>{day.date}</h2>
               <ul>
-                {day.events.map((event, index) => (
-                  <li key={index}>
+                {day.events.map((event) => (
+                  <li key={event.title}>
                     <span className="text-msx-lightBlue">{event.time} </span>
                     <span className="text-msx-cyan">{event.type}:</span>
                     {` ${event.title}`}

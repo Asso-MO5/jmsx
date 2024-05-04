@@ -11,6 +11,7 @@ const menulinks = [
   { href: '/programme', label: 'Programme' },
   /* { href: "/gamejam", label: "Game Jam" },
   { href: "/presse", label: "Presses" }, */
+  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -51,7 +52,7 @@ function MenuMobile() {
       {isOpen && (
         <div className="z-40 fixed inset-0 bg-msx-black">
           <div className="h-full flex gap-5 p-3 flex-col items-center justify-center whitespace-nowrap text-xl">
-            <div className="p-4 w-full rounded-sm border border-msx-darkBlue flex items-center justify-center">
+            <div className="p-4  w-full rounded-sm border border-msx-darkBlue flex items-center justify-center">
               <Ticket />
             </div>
             {menulinks.map((link, index) => (
@@ -93,7 +94,9 @@ function MenuDesktop() {
           </Link>
         ))}
       </nav>
-      <Ticket />
+      <div className="mr-3">
+        <Ticket />
+      </div>
     </div>
   )
 }

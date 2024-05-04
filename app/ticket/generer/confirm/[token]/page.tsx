@@ -2,6 +2,8 @@ import { createServerClient } from '@/utils'
 import { tables } from '@/utils/supabase/tables'
 import { cookies } from 'next/headers'
 
+export const runtime = 'edge'
+
 async function getData(token: string) {
   const cookieStore = cookies()
 
