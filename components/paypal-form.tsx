@@ -137,7 +137,10 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
   const handleSubmitStudent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!email.includes('@isart.com')) {
+    if (
+      !email.includes('@isart.com') ||
+      !email.includes('@student.isartdigital.com')
+    ) {
       setError('Veuillez renseigner une adresse email ISART')
       return
     }
