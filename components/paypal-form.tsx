@@ -139,7 +139,8 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
 
     if (
       !email.includes('@isart.com') ||
-      !email.includes('@student.isartdigital.com')
+      !email.includes('@student.isartdigital.com') ||
+      !email.includes('@isartdigital.com')
     ) {
       setError('Veuillez renseigner une adresse email ISART')
       return
