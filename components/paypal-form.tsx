@@ -137,11 +137,9 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
   const handleSubmitStudent = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (
-      !email.includes('@isart.com') ||
-      !email.includes('@student.isartdigital.com') ||
-      !email.includes('@isartdigital.com')
-    ) {
+    console.log(email, !email.includes('@student.isartdigital.com'))
+    const domain = email.split('@')[1]
+    if (!domain.match(/isartdigital.com|isartdigital.com/)) {
       setError('Veuillez renseigner une adresse email ISART')
       return
     }
@@ -288,7 +286,11 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
         {packFilter.includes('étudiants') && (
           <form className="flex flex-col gap-8" onSubmit={handleSubmitStudent}>
             <fieldset>
-              <label htmlFor="email">{"Email ('@isart.com')"}</label>
+              <label htmlFor="email">
+                {
+                  'Email (@isart.com, @student.isartdigital.com ou @isartdigital.com)'
+                }
+              </label>
               <input
                 type="email"
                 className="input"
