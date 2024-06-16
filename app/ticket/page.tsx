@@ -6,7 +6,7 @@ export default function Ticket() {
       <div className="flex flex-col p-4 gap-5">
         <div className="flex flex-col gap-3">
           <h1 className="text-msx-magenta border-b border-msx-magenta">
-            Inscription
+            Billeterie
           </h1>
           <PaypalModal />
         </div>
