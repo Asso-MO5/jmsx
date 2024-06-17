@@ -122,7 +122,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
             router.push('/ticket/' + transaction_id)
             onClose?.()
           },
-          onError: (err) => {
+          onError: () => {
             setError('Une erreur est survenue lors du paiement')
           },
         })
@@ -181,6 +181,8 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
   useEffect(() => {
     handleFetchInfos()
     initPaypal()
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('pack')) setPackFilter(params.get('pack') || 'visiteurs')
   }, [])
 
   useEffect(() => {
@@ -210,6 +212,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
               key={type}
               onClick={() => {
                 setPackFilter(type)
+                window.location.search = `pack=${type}`
                 setSelectedPack(
                   packs.filter((pack) =>
                     type.match(/tudiants|students/)

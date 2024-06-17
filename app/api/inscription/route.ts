@@ -57,15 +57,7 @@ const ticketsPacks: TicketsPacks[] = [
     description: 'Pass 2 jours pour les exposants',
     type: 'exhibitors',
   },
-  {
-    name: 'Game jam',
-    price: typeOfVisitors.students.price * 2,
-    seats: 1,
-    days: [1, 2],
-    availablePlace: typeOfVisitors.gamJam.seat,
-    description: 'Réservez aux étudiants ISART',
-    type: 'gameJam',
-  },
+
   {
     name: '2 jours - étudiants ISART',
     price: typeOfVisitors.students.price * 2,
@@ -131,6 +123,15 @@ const ticketsPacks: TicketsPacks[] = [
     description: 'Pass pour le dimanche (étudiants ISART)',
     type: 'students',
   },
+    {
+    name: 'Game jam',
+    price: typeOfVisitors.students.price * 2,
+    seats: 1,
+    days: [1, 2],
+    availablePlace: typeOfVisitors.gamJam.seat,
+    description: 'Réservez aux étudiants ISART',
+    type: 'gameJam',
+  }
 ]
 
 export async function GET() {
@@ -146,15 +147,15 @@ export async function GET() {
     })
   }
 
-  const tickets = [...ticketsPacks]
-
-  tickets.forEach((ticket) => {
-    const ticketData = data.filter((seat) => seat.type === ticket.type)
-    ticket.availablePlace -= ticketData.length
-  })
-
   return new Response(
-    JSON.stringify(tickets.filter((ticket) => ticket.availablePlace > 0)),
+    JSON.stringify([...ticketsPacks].map((ticket) => {
+    const ticketData = data.filter((seat) => seat.type === ticket.type)
+
+    return {
+      ...ticket,
+      availablePlace:  ticket.availablePlace - ticketData.length,
+    }
+  }).filter((ticket) => ticket.availablePlace > 0)),
     {
       headers: {
         'Content-Type': 'application/json',
