@@ -58,15 +58,6 @@ const ticketsPacks: TicketsPacks[] = [
     type: 'exhibitors',
   },
 
-  {
-    name: '2 jours - étudiants ISART',
-    price: typeOfVisitors.students.price * 2,
-    seats: 1,
-    days: [1, 2],
-    availablePlace: typeOfVisitors.students.seat,
-    description: 'Réservez aux étudiants ISART',
-    type: 'students',
-  },
 
   {
     name: 'samedi - visiteurs',
@@ -121,6 +112,16 @@ const ticketsPacks: TicketsPacks[] = [
     days: [2],
     availablePlace: typeOfVisitors.students.seat,
     description: 'Pass pour le dimanche (étudiants ISART)',
+    type: 'students',
+  },
+  
+  {
+    name: '2 jours - étudiants ISART',
+    price: typeOfVisitors.students.price * 2,
+    seats: 1,
+    days: [1, 2],
+    availablePlace: typeOfVisitors.students.seat,
+    description: 'Réservez aux étudiants ISART',
     type: 'students',
   },
     {
