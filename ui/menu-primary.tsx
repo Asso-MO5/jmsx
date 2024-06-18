@@ -3,6 +3,7 @@ import { Ticket } from '@/components'
 import { useIsMobile } from '@/hooks'
 import { dc } from '@/utils/dynamic-classes'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const menulinks = [
@@ -20,12 +21,14 @@ const menulinks = [
 export function MenuPrimary() {
   const [isClient, setIsClient] = useState(false)
   const isMobile = useIsMobile(850)
+  const pathname = usePathname()
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  if (!isClient) return null
+  if (pathname.match(/\/screen\//) || !isClient) return null
+
   return isMobile ? <MenuMobile /> : <MenuDesktop />
 }
 

@@ -1,7 +1,10 @@
+'use client'
 import { HeaderPlace } from '@/components'
 import Link from 'next/link'
-
+import { usePathname } from 'next/navigation'
 export function Header() {
+  const pathname = usePathname()
+  if (pathname.match(/\/screen\//)) return null
   return (
     <header className="flex p-2 pb-0 items-center justify-center w-full">
       <Link href="/">
