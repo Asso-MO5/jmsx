@@ -23,10 +23,13 @@ export default function ScreenProgram() {
     const interval = setInterval(() => {
       refreshProgram()
 
-      const currentTime = new Date().toTimeString().slice(0, 5)
-      const nextIndex = programDay.findIndex(
-        (event) => event.time > currentTime
-      )
+      const currentTime = new Date()
+      const nextIndex = programDay.findIndex((event) => {
+        const [hours, minutes] = event.time.split(':')
+        const eventTime = new Date()
+        eventTime.setHours(parseInt(hours), parseInt(minutes), 0, 0)
+        return eventTime > currentTime
+      })
       setNextEventIndex(nextIndex === -1 ? 0 : nextIndex)
     }, 1000)
     return () => clearInterval(interval)
@@ -43,7 +46,13 @@ export default function ScreenProgram() {
       </div>
       <ul className="flex flex-col gap-5 list-none mt-6">
         {programDay
-          .filter((_, index) => index !== nextEventIndex)
+          .filter((event, index) => {
+            const currentTime = new Date()
+            const [hours, minutes] = event.time.split(':')
+            const eventTime = new Date()
+            eventTime.setHours(parseInt(hours), parseInt(minutes), 0, 0)
+            return index !== nextEventIndex && eventTime > currentTime
+          })
           .map((event) => (
             <li key={event.title}>
               <span className="text-msx-lightBlue">{event.time} </span>
