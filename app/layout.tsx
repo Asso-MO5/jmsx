@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Silkscreen } from 'next/font/google'
 import './globals.css'
 import { Header, MenuPrimary } from '@/ui'
+import { headers } from 'next/headers'
 
 const silkscreen = Silkscreen({
   weight: '400',
@@ -38,11 +39,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const pathname = headers().get('referer') || ''
+
   return (
     <html lang="fr">
       <body className={silkscreen.className}>
-        <Header />
-        <MenuPrimary />
+        {!pathname.match(/\/screen\//) && (
+          <>
+            <Header />
+            <MenuPrimary />
+          </>
+        )}
         {children}
         <footer></footer>
       </body>
