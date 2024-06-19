@@ -43,7 +43,6 @@ export default function RootLayout({
       <body className={silkscreen.className}>
         <Header />
         <MenuPrimary />
-
         {children}
         <footer></footer>
       </body>

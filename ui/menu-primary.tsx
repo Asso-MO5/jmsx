@@ -27,7 +27,7 @@ export function MenuPrimary() {
     setIsClient(true)
   }, [])
 
-  if (pathname.match(/\/screen\//) || !isClient) return null
+  if (pathname.match(/\/screen\/|\/qr/) || !isClient) return null
 
   return isMobile ? <MenuMobile /> : <MenuDesktop />
 }

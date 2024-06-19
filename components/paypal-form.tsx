@@ -126,6 +126,7 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
             setError('Une erreur est survenue lors du paiement')
           },
         })
+
         .render(`#${id}`)
     } catch (error) {
       console.error('failed to render the PayPal Buttons', error)
