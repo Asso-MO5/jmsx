@@ -213,11 +213,13 @@ export function PaypalModal({ onClose }: PaypalModalProps) {
               key={type}
               onClick={() => {
                 setPackFilter(type)
-                router.push(
+              /*  router.push(
                   window.location.pathname + '?pack=' + type,
                   // @ts-ignore
                   { shallow: true }
-                )
+
+
+                ) */
                 setSelectedPack(
                   packs.filter((pack) =>
                     type.match(/tudiants|students/)
