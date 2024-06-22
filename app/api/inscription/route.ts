@@ -39,7 +39,7 @@ const typeOfVisitors = {
 }
 
 const ticketsPacks: TicketsPacks[] = [
-  {
+ /* {
     name: '2 jours - visiteurs',
     price: typeOfVisitors.visitors.price * 2,
     seats: 1,
@@ -85,7 +85,7 @@ const ticketsPacks: TicketsPacks[] = [
     availablePlace: typeOfVisitors.students.seat,
     description: 'Pass pour le samedi (étudiants ISART)',
     type: 'students',
-  },
+  }, */
 
   {
     name: 'dimanche - visiteurs',
@@ -124,7 +124,7 @@ const ticketsPacks: TicketsPacks[] = [
     description: 'Réservez aux étudiants ISART',
     type: 'students',
   },
-    {
+  /*  {
     name: 'Game jam',
     price: typeOfVisitors.students.price * 2,
     seats: 1,
@@ -132,7 +132,7 @@ const ticketsPacks: TicketsPacks[] = [
     availablePlace: typeOfVisitors.gamJam.seat,
     description: 'Réservez aux étudiants ISART',
     type: 'gameJam',
-  }
+  } */
 ]
 
 export async function GET() {
