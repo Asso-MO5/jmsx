@@ -48,9 +48,10 @@ export function QrFlash() {
         )}
 
         <QrReader
-          constraints={{ facingMode: 'user' }}
+          constraints={{ facingMode: 'environment' }}
           onResult={(result) => {
             if (!!result) {
+              if (data) return
               // @ts-ignore
               setData(result?.text)
             }
@@ -78,6 +79,9 @@ export function QrFlash() {
           />
           <button type="submit" className="btn" disabled={loading}>
             envoyer
+          </button>
+          <button type="button" className="btn" onClick={() => setData('')}>
+            Effacer
           </button>
         </form>
       </div>
