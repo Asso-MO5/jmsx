@@ -30,7 +30,6 @@ export function QrFlash() {
       setError('Accès refusé')
     } finally {
       setLoading(false)
-      setData('')
     }
   }
 
