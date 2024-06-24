@@ -2,6 +2,7 @@ import { Modal } from '@/ui/modal'
 import { PaypalModal } from './paypal-form'
 
 export function Ticket() {
+  return null
   return (
     <Modal
       button={
