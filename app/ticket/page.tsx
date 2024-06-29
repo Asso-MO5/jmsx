@@ -1,6 +1,9 @@
-import { PaypalModal } from '@/components/paypal-form'
+import { redirect } from 'next/navigation'
+//import { PaypalModal } from '@/components/paypal-form'
 
 export default function Ticket() {
+  return redirect('/')
+  /* DISABLED FOR NOW
   return (
     <main className="relative flex flex-col gap-3 max-w-[512px]  m-auto">
       <div className="flex flex-col p-4 gap-5">
@@ -13,4 +16,5 @@ export default function Ticket() {
       </div>
     </main>
   )
+  */
 }

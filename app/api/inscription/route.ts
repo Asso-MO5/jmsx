@@ -148,6 +148,17 @@ export async function GET() {
     })
   }
 
+  // RESPONSE FOR NO CONVENTION PERIOD
+    return new Response(
+    JSON.stringify([]),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
+
+  /*
   return new Response(
     JSON.stringify([...ticketsPacks].map((ticket) => {
     const ticketData = data.filter((seat) => seat.type === ticket.type)
@@ -163,9 +174,12 @@ export async function GET() {
       },
     }
   )
+    */
 }
 
 export async function POST(request: NextRequest) {
+
+
   const requestBody = await request.text()
   const formData = JSON.parse(requestBody)
 
@@ -213,4 +227,6 @@ export async function POST(request: NextRequest) {
       'Content-Type': 'application/json',
     },
   })
+
+  
 }

@@ -40,7 +40,7 @@ function MenuMobile() {
   return (
     <>
       <div className="p-3 flex items-center justify-center">
-        <Ticket />
+        {/* <Ticket /> */}
       </div>
       <div className="fixed top-4 right-4 z-50">
         <button type="button" onClick={() => setIsOpen(!isOpen)}>
@@ -56,7 +56,7 @@ function MenuMobile() {
         <div className="z-40 fixed inset-0 bg-msx-black">
           <div className="h-full flex gap-5 p-3 flex-col items-center justify-center whitespace-nowrap text-xl">
             <div className="p-4  w-full rounded-sm border border-msx-darkBlue flex items-center justify-center">
-              <Ticket />
+              {/* <Ticket /> */}
             </div>
             {menulinks.map((link, index) => (
               <Link
@@ -97,9 +97,7 @@ function MenuDesktop() {
           </Link>
         ))}
       </nav>
-      <div className="mr-3">
-        <Ticket />
-      </div>
+      <div className="mr-3">{/* <Ticket /> */}</div>
     </div>
   )
 }
