@@ -42,11 +42,11 @@ export const program = [
         title:
           "L'avenir du MSX par Kazuhiko Nishi, suivi d'une séance de questions-réponses",
       },
-      {
+     /* {
         time: '14:00',
         type: 'conférence',
         title: 'Développer un jeu MSX en 2024',
-      },
+      }, */
       {
         time: '15:00',
         type: 'présentation',
