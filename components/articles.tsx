@@ -48,7 +48,7 @@ export function Articles() {
   if (error) return <div className="text-msx-darkRed text-center">{error}</div>
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:grid-cols-4">
+    <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
       {articles.map((article) => (
         <a
           href={`/actu/${article.slug}`}
@@ -65,7 +65,9 @@ export function Articles() {
             width={512}
             height={384}
           />
-          <h2 className="text-lg text-center px-2">{article.title.rendered}</h2>
+          <h2 className="text-base text-center px-2">
+            {article.title.rendered}
+          </h2>
         </a>
       ))}
       <div className="flex items-center flex-col justify-center gap-2 w-full col-span-full p-4">
