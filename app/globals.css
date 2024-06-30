@@ -106,6 +106,7 @@ figcaption {
   @apply text-xs text-msx-darkGreen mb-3;
 }
 
+hr,
 .wp-block-separator {
   @apply border-t-2 border-msx-darkBlue my-4;
 }
