@@ -101,3 +101,11 @@ li {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+figcaption {
+  @apply text-xs text-msx-darkGreen mb-3;
+}
+
+.wp-block-separator {
+  @apply border-t-2 border-msx-darkBlue my-4;
+}

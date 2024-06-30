@@ -9,9 +9,7 @@ export default function Progam() {
             Programme
           </h1>
           <p className="text-msx-gray italic text-center">
-            {
-              'Le programme sera complété, les horaires sont susceptibles de changer'
-            }
+            {"Le programme des conférences de l'édition 2024."}
           </p>
 
           {program.map((day) => (

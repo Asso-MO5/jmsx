@@ -8,11 +8,13 @@ import { useEffect, useState } from 'react'
 
 const menulinks = [
   { href: '/', label: 'Accueil' },
+  { href: '/actu', label: "L'actualité" },
   { href: '/infos', label: 'Informations pratiques' },
   { href: '/programme', label: 'Programme' },
-  /* { href: "/gamejam", label: "Game Jam" },
-  { href: "/presse", label: "Presses" }, */
-  { href: '/faq', label: 'FAQ' },
+  /*
+  { href: "/gamejam", label: "Game Jam" },
+  { href: "/presse", label: "Presses" }, 
+  { href: '/faq', label: 'FAQ' } */
   { href: '/contact', label: 'Contact' },
 ]
 
