@@ -2,6 +2,8 @@ import { Article } from '@/utils/articles'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+export const runtime = 'edge'
+
 type Props = {
   params: { slug: string }
 }
